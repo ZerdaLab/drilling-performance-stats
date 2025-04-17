@@ -231,7 +231,8 @@ def boxplot_by_runs_and_formations(dh_df, runs_df, forms_df, target_column):
         'Count': [],
         'Mean': [],
         'Median': [],
-        'Std Dev': []
+        # 'Std Dev': [],
+        'P90': []
     }
     
     # Process each run
@@ -285,7 +286,8 @@ def boxplot_by_runs_and_formations(dh_df, runs_df, forms_df, target_column):
                 'count': len(segment_data),
                 'mean': np.mean(segment_data),
                 'median': np.median(segment_data),
-                'std': np.std(segment_data)
+                # 'std': np.std(segment_data),
+                'p90': np.percentile(segment_data, 90),
             }
             
             # Store stats
@@ -296,7 +298,8 @@ def boxplot_by_runs_and_formations(dh_df, runs_df, forms_df, target_column):
             stats_data['Count'].append(stats['count'])
             stats_data['Mean'].append(f"{stats['mean']:.2f}")
             stats_data['Median'].append(f"{stats['median']:.2f}")
-            stats_data['Std Dev'].append(f"{stats['std']:.2f}")
+            # stats_data['Std Dev'].append(f"{stats['std']:.2f}")
+            stats_data['P90'].append(f"{stats['p90']:.2f}")
             
             # Create unique identifier for this run+formation combination
             trace_name = f"{bit_model} - {form_name}"
